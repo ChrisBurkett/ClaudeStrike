@@ -66,6 +66,29 @@ pip install --upgrade anthropic requests > /dev/null 2>&1
 deactivate
 echo -e "${GREEN}✓ Dependencies updated${RESET}"
 
+# Update desktop launcher
+echo -e "${BLUE}Updating desktop launcher...${RESET}"
+DESKTOP_DIR="$HOME/.local/share/applications"
+mkdir -p "$DESKTOP_DIR"
+
+cat > "$DESKTOP_DIR/claudestrike.desktop" << 'EOF'
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=ClaudeStrike AI Terminal Emulator
+Comment=AI-powered pentesting assistant with MCP
+Exec=/bin/zsh -i -c "/home/kali/claudestrike/start_claudestrike.sh; exec zsh"
+Icon=/usr/share/icons/Tango/scalable/apps/terminal.svg
+Terminal=true
+Categories=System;Security;ConsoleOnly;
+StartupNotify=true
+EOF
+
+update-desktop-database "$DESKTOP_DIR" 2>/dev/null || true
+echo -e "${GREEN}✓ Desktop launcher updated${RESET}"
+
+# Make scripts executable
+
 # Make scripts executable
 chmod +x start_claudestrike.sh 2>/dev/null || true
 chmod +x *.py 2>/dev/null || true
