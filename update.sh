@@ -11,6 +11,7 @@ set -e
 GREEN='\033[92m'
 YELLOW='\033[93m'
 BLUE='\033[94m'
+RED='\033[91m'
 BOLD='\033[1m'
 RESET='\033[0m'
 
@@ -22,7 +23,7 @@ echo ""
 
 # Check if ClaudeStrike is installed
 if [ ! -d "$INSTALL_DIR" ]; then
-    echo -e "${YELLOW}ClaudeStrike is not installed at $INSTALL_DIR${RESET}"
+    echo -e "${RED}ClaudeStrike is not installed at $INSTALL_DIR${RESET}"
     echo "Run the installer first:"
     echo "  curl -sSL https://raw.githubusercontent.com/ChrisBurkett/ClaudeStrike/main/install.sh | bash"
     exit 1
@@ -53,18 +54,25 @@ REMOTE=$(git rev-parse @{u})
 
 if [ "$LOCAL" = "$REMOTE" ]; then
     echo -e "${GREEN}✓ ClaudeStrike is already up to date!${RESET}"
-    exit 0
+    
+    # Still update desktop launcher and venv
+    echo -e "${BLUE}Verifying installation...${RESET}"
+else
+    echo -e "${YELLOW}Updates available. Pulling changes...${RESET}"
+    git pull origin main || git pull origin master
 fi
 
-echo -e "${YELLOW}Updates available. Pulling changes...${RESET}"
-git pull origin main || git pull origin master
-
-# Reinstall dependencies
-echo -e "${BLUE}Updating Python dependencies...${RESET}"
+# Recreate virtual environment
+echo -e "${BLUE}Updating Python virtual environment...${RESET}"
+if [ -d "venv" ]; then
+    rm -rf venv
+fi
+python3 -m venv venv
 source venv/bin/activate
-pip install --upgrade anthropic requests > /dev/null 2>&1
+pip install --upgrade pip > /dev/null 2>&1
+pip install anthropic requests > /dev/null 2>&1
 deactivate
-echo -e "${GREEN}✓ Dependencies updated${RESET}"
+echo -e "${GREEN}✓ Virtual environment updated${RESET}"
 
 # Update desktop launcher
 echo -e "${BLUE}Updating desktop launcher...${RESET}"
@@ -86,8 +94,6 @@ EOF
 
 update-desktop-database "$DESKTOP_DIR" 2>/dev/null || true
 echo -e "${GREEN}✓ Desktop launcher updated${RESET}"
-
-# Make scripts executable
 
 # Make scripts executable
 chmod +x start_claudestrike.sh 2>/dev/null || true
