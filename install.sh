@@ -157,7 +157,12 @@ EOF
 
 # Update desktop database
 update-desktop-database "$DESKTOP_DIR" 2>/dev/null || true
+
+# Clear GNOME cache to force menu refresh
+rm -rf "$HOME/.cache/gnome-shell/" 2>/dev/null || true
+
 echo -e "${GREEN}   ✓ Desktop launcher installed${RESET}"
+echo -e "${YELLOW}   Note: You may need to log out and back in to see ClaudeStrike in the menu${RESET}"
 
 # Installation complete
 echo ""

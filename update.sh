@@ -93,7 +93,12 @@ StartupNotify=true
 EOF
 
 update-desktop-database "$DESKTOP_DIR" 2>/dev/null || true
+
+# Clear GNOME cache to force menu refresh
+rm -rf "$HOME/.cache/gnome-shell/" 2>/dev/null || true
+
 echo -e "${GREEN}✓ Desktop launcher updated${RESET}"
+echo -e "${YELLOW}Note: You may need to log out/in to see menu changes${RESET}"
 
 # Make scripts executable
 chmod +x start_claudestrike.sh 2>/dev/null || true
