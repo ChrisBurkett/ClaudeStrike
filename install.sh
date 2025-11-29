@@ -25,6 +25,12 @@ echo -e "${BOLD}${GREEN}║${RESET}  AI-Powered Pentesting Assistant            
 echo -e "${BOLD}${GREEN}║${RESET}  By: Christopher M. Burkett                            ${BOLD}${GREEN}║${RESET}"
 echo -e "${BOLD}${GREEN}╚════════════════════════════════════════════════════════════╝${RESET}"
 echo ""
+echo -e "${BOLD}${GREEN}╔════════════════════════════════════════════════════════════╗${RESET}"
+echo -e "${BOLD}${GREEN}║${RESET}  ${BOLD}• Type 'claudestrike' or 'cstrike' in terminal${RESET} ${BOLD}${GREEN}║${RESET}"
+echo -e "${BOLD}${GREEN}║${RESET}  • Search for 'ClaudeStrike' in applications menu (02-Resource Development) ${BOLD}${GREEN}║${RESET}"
+echo -e "${BOLD}${GREEN}║${RESET}  • Or run: $INSTALL_DIR/start_claudestrike.sh                            ${BOLD}${GREEN}║${RESET}"
+echo -e "${BOLD}${GREEN}╚════════════════════════════════════════════════════════════╝${RESET}"
+
 
 # Check if running on Kali
 if [ ! -f /etc/os-release ] || ! grep -q "Kali" /etc/os-release; then
@@ -163,6 +169,40 @@ rm -rf "$HOME/.cache/gnome-shell/" 2>/dev/null || true
 
 echo -e "${GREEN}   ✓ Desktop launcher installed${RESET}"
 echo -e "${YELLOW}   Note: You may need to log out and back in to see ClaudeStrike in the menu${RESET}"
+
+# Install command-line aliases
+echo -e "${BLUE}[9/9]${RESET} Installing command-line aliases..."
+
+# Add aliases to both bash and zsh
+if [ -f "$HOME/.bashrc" ]; then
+    # Remove old aliases if they exist
+    sed -i '/# ClaudeStrike aliases/d' "$HOME/.bashrc"
+    sed -i '/alias claudestrike=/d' "$HOME/.bashrc"
+    sed -i '/alias cstrike=/d' "$HOME/.bashrc"
+    
+    # Add new aliases
+    echo "" >> "$HOME/.bashrc"
+    echo "# ClaudeStrike aliases (added by installer)" >> "$HOME/.bashrc"
+    echo "alias claudestrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.bashrc"
+    echo "alias cstrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.bashrc"
+fi
+
+if [ -f "$HOME/.zshrc" ]; then
+    # Remove old aliases if they exist
+    sed -i '/# ClaudeStrike aliases/d' "$HOME/.zshrc"
+    sed -i '/alias claudestrike=/d' "$HOME/.zshrc"
+    sed -i '/alias cstrike=/d' "$HOME/.zshrc"
+    
+    # Add new aliases
+    echo "" >> "$HOME/.zshrc"
+    echo "# ClaudeStrike aliases (added by installer)" >> "$HOME/.zshrc"
+    echo "alias claudestrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.zshrc"
+    echo "alias cstrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.zshrc"
+fi
+
+echo -e "${GREEN}   ✓ Command aliases installed (claudestrike, cstrike)${RESET}"
+
+# Installation complete
 
 # Installation complete
 echo ""

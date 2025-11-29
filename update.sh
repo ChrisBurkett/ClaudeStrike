@@ -100,6 +100,33 @@ rm -rf "$HOME/.cache/gnome-shell/" 2>/dev/null || true
 echo -e "${GREEN}✓ Desktop launcher updated${RESET}"
 echo -e "${YELLOW}Note: You may need to log out/in to see menu changes${RESET}"
 
+# Update command-line aliases
+echo -e "${BLUE}Updating command-line aliases...${RESET}"
+
+if [ -f "$HOME/.bashrc" ]; then
+    sed -i '/# ClaudeStrike aliases/d' "$HOME/.bashrc"
+    sed -i '/alias claudestrike=/d' "$HOME/.bashrc"
+    sed -i '/alias cstrike=/d' "$HOME/.bashrc"
+    
+    echo "" >> "$HOME/.bashrc"
+    echo "# ClaudeStrike aliases (added by installer)" >> "$HOME/.bashrc"
+    echo "alias claudestrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.bashrc"
+    echo "alias cstrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.bashrc"
+fi
+
+if [ -f "$HOME/.zshrc" ]; then
+    sed -i '/# ClaudeStrike aliases/d' "$HOME/.zshrc"
+    sed -i '/alias claudestrike=/d' "$HOME/.zshrc"
+    sed -i '/alias cstrike=/d' "$HOME/.zshrc"
+    
+    echo "" >> "$HOME/.zshrc"
+    echo "# ClaudeStrike aliases (added by installer)" >> "$HOME/.zshrc"
+    echo "alias claudestrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.zshrc"
+    echo "alias cstrike='$HOME/claudestrike/start_claudestrike.sh'" >> "$HOME/.zshrc"
+fi
+
+echo -e "${GREEN}✓ Command aliases updated${RESET}"
+
 # Make scripts executable
 chmod +x start_claudestrike.sh 2>/dev/null || true
 chmod +x *.py 2>/dev/null || true
