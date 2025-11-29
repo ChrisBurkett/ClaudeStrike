@@ -86,6 +86,24 @@ else
     echo "✅ API key found"
 fi
 
+#API Key check end
+
+# ============================================================
+# CHECK FOR UPDATES
+# ============================================================
+if [ -d "$HOME/claudestrike/.git" ]; then
+    # Fetch remote quietly
+    git -C "$HOME/claudestrike" fetch origin --quiet 2>/dev/null || true
+    
+    LOCAL=$(git -C "$HOME/claudestrike" rev-parse @ 2>/dev/null || echo "")
+    REMOTE=$(git -C "$HOME/claudestrike" rev-parse @{u} 2>/dev/null || echo "")
+    
+    if [ -n "$LOCAL" ] && [ -n "$REMOTE" ] && [ "$LOCAL" != "$REMOTE" ]; then
+        echo "🔔 Update available for ClaudeStrike!"
+        echo "   Select option [8] to update"
+        echo ""
+    fi
+fi
 
 # ============================================================
 # CHECK MCP SERVERS
@@ -140,6 +158,7 @@ echo "  [2] 🚀 Full Features (no cost limits)"
 echo "  [3] 🐛 Debug Mode (troubleshooting)"
 echo "  [4] ❌ Quit"
 echo ""
+echo "  [8] 🔄 Update ClaudeStrike"
 echo "  [9] !! 🗑️  Delete API Key !!"
 echo ""
 echo -n "Choice (auto-starting mode 1 in 5 seconds): "
