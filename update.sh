@@ -1,0 +1,79 @@
+#!/bin/bash
+#===============================================================================
+# ClaudeStrike Updater
+# By: Christopher M. Burkett DBA: ChrisFightsFun
+# GitHub: https://github.com/ChrisBurkett/ClaudeStrike
+#===============================================================================
+
+set -e
+
+# Colors
+GREEN='\033[92m'
+YELLOW='\033[93m'
+BLUE='\033[94m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+INSTALL_DIR="$HOME/claudestrike"
+
+echo ""
+echo -e "${BOLD}${BLUE}⚡ ClaudeStrike Updater${RESET}"
+echo ""
+
+# Check if ClaudeStrike is installed
+if [ ! -d "$INSTALL_DIR" ]; then
+    echo -e "${YELLOW}ClaudeStrike is not installed at $INSTALL_DIR${RESET}"
+    echo "Run the installer first:"
+    echo "  curl -sSL https://raw.githubusercontent.com/ChrisBurkett/ClaudeStrike/main/install.sh | bash"
+    exit 1
+fi
+
+cd "$INSTALL_DIR"
+
+# Check if it's a git repository
+if [ ! -d ".git" ]; then
+    echo -e "${YELLOW}Not a git repository. Cannot update.${RESET}"
+    echo "Reinstall ClaudeStrike to enable updates."
+    exit 1
+fi
+
+# Create backup
+echo -e "${BLUE}Creating backup...${RESET}"
+BACKUP_DIR="$HOME/claudestrike_backup_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$BACKUP_DIR"
+cp -r "$INSTALL_DIR"/* "$BACKUP_DIR/" 2>/dev/null || true
+echo -e "${GREEN}✓ Backup saved to: $BACKUP_DIR${RESET}"
+
+# Pull updates
+echo -e "${BLUE}Checking for updates...${RESET}"
+git fetch origin
+
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+
+if [ "$LOCAL" = "$REMOTE" ]; then
+    echo -e "${GREEN}✓ ClaudeStrike is already up to date!${RESET}"
+    exit 0
+fi
+
+echo -e "${YELLOW}Updates available. Pulling changes...${RESET}"
+git pull origin main || git pull origin master
+
+# Reinstall dependencies
+echo -e "${BLUE}Updating Python dependencies...${RESET}"
+source venv/bin/activate
+pip install --upgrade anthropic requests > /dev/null 2>&1
+deactivate
+echo -e "${GREEN}✓ Dependencies updated${RESET}"
+
+# Make scripts executable
+chmod +x start_claudestrike.sh 2>/dev/null || true
+chmod +x *.py 2>/dev/null || true
+chmod +x *.sh 2>/dev/null || true
+
+echo ""
+echo -e "${GREEN}✓ ClaudeStrike updated successfully!${RESET}"
+echo ""
+echo -e "${YELLOW}If you experience any issues, restore from backup:${RESET}"
+echo "  cp -r $BACKUP_DIR/* $INSTALL_DIR/"
+echo ""
