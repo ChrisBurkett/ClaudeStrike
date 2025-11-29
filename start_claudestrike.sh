@@ -271,7 +271,7 @@ echo
 
 
 # Activate venv
-cd ~/
+cd ~/claudestrike
 source venv/bin/activate
 
 # Run based on choice
