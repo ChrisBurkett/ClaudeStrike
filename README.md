@@ -40,15 +40,14 @@ chmod +x install.sh
 
 ## Usage
 
-Launch ClaudeStrike from your applications menu or run:
+Launch ClaudeStrike from your **Applications menu - 02 Resource Development** menu or run:
 ```bash
-~/claudestrike/start_claudestrike.sh
+cstrike or claudestrike
 ```
 
 ## Update
 ```bash
-cd ~/claudestrike
-./update.sh
+cstrike then select mode 8 (before 5 second timer runs out)
 ```
 
 ## License
