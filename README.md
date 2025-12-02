@@ -58,3 +58,5 @@ MIT License - Feel free to use and modify!
 
 - 🐛 Issues: https://github.com/ChrisBurkett/ClaudeStrike/issues
 - 📧 Contact: christophermburkett@gmail.com
+
+-     Links: https://github.com/ChrisBurkett/ClaudeStrike/blob/main/Links.md
