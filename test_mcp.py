@@ -2,7 +2,7 @@
 """
 ClaudeStrike with MCP Integration for Kali Linux
 MCP Connection Test Script
-By: Christopher M. Burkett DBA: ChrisFightsFun
+By: Christopher M. Burkett DBA: CyberAndFires
 GitHub: https://github.com/ChrisBurkett/ClaudeStrike
 """
 

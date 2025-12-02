@@ -1,12 +1,12 @@
 #!/bin/bash
 #===============================================================================
 # ClaudeStrike - AI Pentesting Assistant with MCP Integration
-# By: Christopher M. Burkett DBA: ChrisFightsFun
+# By: Christopher M. Burkett DBA: CyberAndFires
 # GitHub: https://github.com/ChrisBurkett/ClaudeStrike
 #===============================================================================
 # Author line (appears instantly)
 echo ""
-echo -e "${RED}${BOLD}By: Christopher M. Burkett (ChrisFightsFun)${RESET}"
+echo -e "${RED}${BOLD}By: Christopher M. Burkett (CyberAndFires)${RESET}"
 echo "╔════════════════════════════════════════════════════════════╗"
 echo "║  ⚡ ClaudeStrike Launcher ⚡                              ║"
 echo "║  AI-Powered Pentesting Assistant                          ║"

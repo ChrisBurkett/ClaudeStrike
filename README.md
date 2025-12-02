@@ -2,7 +2,7 @@
 
 AI-Powered Pentesting Assistant with MCP Integration for Kali Linux
 
-By: Christopher M. Burkett (ChrisFightsFun)
+By: Christopher M. Burkett (CyberAndFires)
 
 ## Features
 

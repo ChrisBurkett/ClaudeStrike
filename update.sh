@@ -1,7 +1,7 @@
 #!/bin/bash
 #===============================================================================
 # ClaudeStrike Updater
-# By: Christopher M. Burkett DBA: ChrisFightsFun
+# By: Christopher M. Burkett DBA: CyberAndFires
 # GitHub: https://github.com/ChrisBurkett/ClaudeStrike
 #===============================================================================
 

@@ -2,7 +2,7 @@
 """
 ClaudeStrike with MCP Integration for Kali Linux (COST OPTIMIZED)
 Usage: python claude_chat_cost.py [--mcp] [--mcp-server URL]
-By: Christopher M. Burkett DBA: ChrisFightsFun
+By: Christopher M. Burkett DBA: CyberAndFires
 GitHub: https://github.com/ChrisBurkett/claudestrike
 
 Cost Optimizations:
@@ -257,7 +257,7 @@ Be concise and focus on actionable information."""
         print(f"{Colors.BOLD}{Colors.GREEN}║{Colors.RESET}  {Colors.BOLD}⚡ ClaudeStrike - AI Pentesting Assistant ⚡{Colors.RESET}     {Colors.BOLD}{Colors.GREEN}║{Colors.RESET}")
         print(f"{Colors.BOLD}{Colors.GREEN}╠{'═'*58}╣{Colors.RESET}")
         print(f"{Colors.BOLD}{Colors.GREEN}║{Colors.RESET}  {Colors.BOLD}{Colors.YELLOW}💰 COST OPTIMIZED MODE{Colors.RESET}                             {Colors.BOLD}{Colors.GREEN}║{Colors.RESET}")
-        print(f"{Colors.BOLD}{Colors.GREEN}║{Colors.RESET}  By: Christopher M. Burkett (ChrisFightsFun)        {Colors.BOLD}{Colors.GREEN}║{Colors.RESET}")
+        print(f"{Colors.BOLD}{Colors.GREEN}║{Colors.RESET}  By: Christopher M. Burkett (CyberAndFires)        {Colors.BOLD}{Colors.GREEN}║{Colors.RESET}")
         print(f"{Colors.BOLD}{Colors.GREEN}╚{'═'*58}╝{Colors.RESET}")
         
         if self.mcp and self.mcp.enabled:

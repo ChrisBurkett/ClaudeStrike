@@ -1,7 +1,7 @@
 #!/bin/bash
 #===============================================================================
 # ClaudeStrike Installer for Kali Linux
-# By: Christopher M. Burkett DBA: ChrisFightsFun
+# By: Christopher M. Burkett DBA: CyberAndFires
 # GitHub: https://github.com/ChrisBurkett/claudestrike
 #===============================================================================
 
